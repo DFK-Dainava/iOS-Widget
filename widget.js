@@ -12,7 +12,7 @@
       return {"last_match": null, "upcoming_match": null};
     }
   }
-  
+
   async function createWidget() {
     let listWidget = new ListWidget();
     let matchesData = await getMatchesData();
@@ -29,6 +29,7 @@
       let headerText = listWidget.addText('Artėjančios rungtynės');
       headerText.centerAlignText();
       headerText.font = Font.boldSystemFont(16);
+      headerText.textColor = new Color("#FFFFFF");
       
       listWidget.addSpacer(8);
 
@@ -36,6 +37,7 @@
     } else {
       let headerText = listWidget.addText('Nėra informacijos apie artėjančias rungtynes');
       headerText.centerAlignText();
+      headerText.textColor = new Color("#FFFFFF");
     }
 
     if (config.widgetFamily === "large" && matchesData.last_match) {
@@ -44,6 +46,7 @@
       let headerText = listWidget.addText('Praėjusios rungtynės');
       headerText.centerAlignText();
       headerText.font = Font.boldSystemFont(16);
+      headerText.textColor = new Color("#FFFFFF");
       
       listWidget.addSpacer(8);
 
@@ -52,7 +55,7 @@
     
     return listWidget;
   }
-  
+
   async function addMatch(stack, match) {
     let teamInfo = stack.addStack();
     teamInfo.spacing = 8;
@@ -125,6 +128,7 @@
 
     let text = textStack.addText(content);
     text.centerAlignText();
+    text.textColor = new Color("#FFFFFF");
 
     textStack.addSpacer();
 
@@ -158,11 +162,11 @@
   }
 
   let widget = await createWidget();
-  
+
   if (config.runsInWidget) {
     Script.setWidget(widget);
   } else {
     widget.presentLarge();
   }
-  
+
   Script.complete();
